@@ -6,6 +6,7 @@ const sanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const appError = require('./utils/newAppError');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
@@ -41,6 +42,7 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 app.use(sanitize());
 app.use(xss());
+app.use(compression());
 app.use(
   hpp({
     whitelist: [
