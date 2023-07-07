@@ -1,5 +1,7 @@
-# Natours Application
+# Natours Web Application
 
 Built using modern technologies: Node.js, express, mongoDB, mongoose and more!
 
-Link: natours-app-c6cu.onrender.com
+[Application link](https://natours-app-c6cu.onrender.com/)
+
+ 
