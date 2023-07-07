@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-const cors = require('cors');
 const ratelimiter = require('express-rate-limit');
 const helmet = require('helmet');
 const sanitize = require('express-mongo-sanitize');
@@ -28,8 +27,6 @@ const limiter = ratelimiter({
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests. Please try again in an hour.',
 });
-app.use(cors());
-app.options('*', cors());
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 app.use(sanitize());
