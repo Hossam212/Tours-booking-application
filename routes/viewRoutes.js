@@ -17,17 +17,12 @@ const POLICY =
   'upgrade-insecure-requests;';
 
 const router = express.Router();
-
+router.use(viewsController.alerts);
 router.use((req, res, next) => {
   res.setHeader(CSP, POLICY);
   next();
 });
-router.get(
-  '/',
-  bookingController.createBookingCheckout,
-  userauth.isLoggedIn,
-  viewsController.getOverview
-);
+router.get('/', userauth.isLoggedIn, viewsController.getOverview);
 router.get('/me', userauth.protect, viewsController.getMe);
 router.get('/my-tours', userauth.protect, viewsController.getMyTours);
 router.get('/tours/:tourName', userauth.isLoggedIn, viewsController.getTour);

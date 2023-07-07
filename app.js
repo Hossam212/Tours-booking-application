@@ -11,6 +11,7 @@ const compression = require('compression');
 const appError = require('./utils/newAppError');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingcons');
 const errorHandling = require('./controllers/errorcons');
 const reviewsRouter = require('./routes/reviews');
 const toursRouter = require('./routes/toursRouters/tours');
@@ -29,7 +30,6 @@ const limiter = ratelimiter({
 });
 app.use(cors());
 app.options('*', cors());
-app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 app.use(sanitize());
@@ -49,6 +49,12 @@ app.use(
 );
 app.use('/api/', limiter);
 //ROUTES
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
+app.use(express.json({ limit: '10kb' }));
 app.use('/', viewRouter);
 //API ROUTES
 app.use('/api/v1/tours', toursRouter);
