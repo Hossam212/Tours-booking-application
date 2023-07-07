@@ -22,7 +22,7 @@ exports.getCheckOutSession = catchAsync(async (req, res, next) => {
             name: `${tour.name} Tour`,
             description: tour.summary,
             images: [
-              `${req.protocol}://${req.get('host')}/public/img/tours/${
+              `./public/img/tours/${
                 tour.imageCover
               }`,
             ],
@@ -51,7 +51,7 @@ exports.webhookCheckout = (req, res, next) => {
     event = stripe.webhooks.constructEvent(
       req.body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET
+      'whsec_hPeZa7Tg16FXIPHRQFt3azVnQn7VfA0G'
     );
   } catch (err) {
     return res.status(400).send(`Webhook error: ${err.message}`);
