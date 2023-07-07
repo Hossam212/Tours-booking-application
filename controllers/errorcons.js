@@ -41,7 +41,7 @@ const handleProducError = (req, res, err) => {
       console.error('ERROR', err);
       res.status(err.statuscode).render('error', {
         title: 'Something went wrong!',
-        msg: 'Please try again later.',
+        msg: err.message,
       });
     }
   }
