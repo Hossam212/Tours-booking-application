@@ -1,6 +1,4 @@
-const stripe = require('stripe')(
-  'sk_test_51NQgLnAMjq2DeMy9A7xS45xOW9szVuI7Szxl3rp1EiBdHkyygkLydVNsqMjYiLI50iGb75S9cJ8DzVytRqMiSMGr00ZVjYUqa3'
-);
+const stripe = require('stripe')(`${process.env.STRIPE_SECRET_KEY}`);
 const factory = require('../controllers/factorycons');
 const Tour = require('../model/tour_schema');
 const booking = require('../model/bookingModel');
